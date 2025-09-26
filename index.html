@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PPSC Junior Clerk MCQ Quiz</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #6366f1;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+            --light-bg: #e0e7ff;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar,
+        .footer {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px rgba(59, 130, 246, 0.08);
+            border: none;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-btn {
+            width: 100%;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            background: #e0e7ff;
+            color: #374151;
+            border: 2px solid #6366f1;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.07);
+            text-align: left;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #6366f1;
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background-color: var(--success-color) !important;
+            color: #fff !important;
+            border-color: var(--success-color) !important;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--danger-color) !important;
+            color: #fff !important;
+            border-color: var(--danger-color) !important;
+        }
+
+        .explanation {
+            margin-top: 15px;
+            background: #e0e7ff;
+            border-left: 4px solid #6366f1;
+            padding: 15px;
+            border-radius: 0.5rem;
+            color: #374151;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-card {
+            margin-bottom: 30px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .footer span {
+            color: #fff !important;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .hero-section {
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: #fff;
+            padding: 4rem 0;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #e0e7ff;
+            z-index: 9999;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-color) 0%, var(--primary-color) 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .wa-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .wa-actions {
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .wa-action-btn {
+            background: #25d366;
+            color: #fff;
+            padding: 12px 14px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            font-size: 1.5rem;
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .wa-action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .wa-fab-btn {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .wa-fab-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+
+            .display-4 {
+                font-size: 2rem;
+            }
+
+            .wa-fab {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Floating WhatsApp Action Button -->
+    <div class="wa-fab">
+        <div class="wa-actions" id="waActions">
+            <a href="https://chat.whatsapp.com/BdZysLjO2z71nOzOduqaie?mode=ems_copy_t" target="_blank"
+                title="Join WhatsApp Group" class="wa-action-btn">
+                <i class="ri-group-line"></i>
+            </a>
+            <a href="https://wa.me/923486227906" target="_blank" title="Chat on WhatsApp" class="wa-action-btn">
+                <i class="ri-whatsapp-line"></i>
+            </a>
+        </div>
+        <button class="wa-fab-btn" id="waFabBtn" aria-label="WhatsApp Actions">
+            <i class="ri-add-line"></i>
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" data-aos="fade-down">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="ri-government-line"></i> PPSC Clerk Prep</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#instructions">Instructions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tips">Tips</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quiz">Start Quiz</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container text-center text-white" data-aos="zoom-in">
+            <i class="ri-shield-user-line" style="font-size: 4rem;"></i>
+            <h1 class="text-white display-4 fw-bold mt-3">Prepare for PPSC Junior Clerk Exam</h1>
+            <p class="lead mb-4">Practice 75 MCQs, get instant feedback, and boost your confidence for the Punjab Public
+                Service Commission exam.</p>
+            <a href="#quiz" class="btn btn-light btn-lg shadow">Start Quiz Now</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+        <!-- Tips Section -->
+        <section id="tips" class="mb-5" data-aos="fade-left">
+            <h2 class="section-title"><i class="ri-lightbulb-line"></i> Exam Preparation Tips</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-computer-line text-primary me-3 mt-1" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6>Computer Skills</h6>
+                                    <p class="small mb-0">Practice typing and basic computer operations regularly.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-book-open-line text-primary me-3 mt-1" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6>Past Papers</h6>
+                                    <p class="small mb-0">Review previous exam papers and sample questions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-newspaper-line text-primary me-3 mt-1" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6>Current Affairs</h6>
+                                    <p class="small mb-0">Stay updated with latest news and general knowledge.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-time-line text-primary me-3 mt-1" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6>Time Management</h6>
+                                    <p class="small mb-0">Practice managing your time efficiently during tests.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-user-smile-line text-primary me-3 mt-1" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6>Stay Confident</h6>
+                                    <p class="small mb-0">Believe in your preparation and stay calm during the exam.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-rest-time-line text-primary me-3 mt-1" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6>Take Breaks</h6>
+                                    <p class="small mb-0">Regular breaks improve concentration and retention.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructions Section -->
+        <section id="instructions" class="mb-5" data-aos="fade-right">
+            <h2 class="section-title"><i class="ri-information-line"></i> Instructions</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>How to Take the Quiz</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="ri-check-line text-success"></i> Read each
+                                    question carefully</li>
+                                <li class="list-group-item"><i class="ri-check-line text-success"></i> Choose one of the
+                                    four options</li>
+                                <li class="list-group-item"><i class="ri-check-line text-success"></i> Get instant
+                                    feedback on your answer</li>
+                                <li class="list-group-item"><i class="ri-check-line text-success"></i> Review
+                                    explanations for better understanding</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Answer Indicators</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="badge bg-success">Green</span> - Correct answer
+                                </li>
+                                <li class="list-group-item"><span class="badge bg-danger">Red</span> - Wrong answer</li>
+                                <li class="list-group-item"><span class="badge bg-primary">Blue</span> - Available
+                                    options</li>
+                                <li class="list-group-item"><i class="ri-lightbulb-line text-warning"></i> - Explanation
+                                    shown for correct answers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Quiz Section -->
+        <section id="quiz" data-aos="fade-up">
+            <h2 class="section-title text-center">PPSC Junior Clerk MCQ Quiz <i class="ri-book-open-line"></i></h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div
+                            class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="text-white mb-0">Question <span id="currentQuestion">1</span> of <span
+                                    id="totalQuestions">75</span></h5>
+                            <div class="score-display-small">Score: <span id="currentScore">0</span></div>
+                        </div>
+                        <div class="card-body">
+                            <div id="quiz-container"></div>
+                            <div id="result-container" style="display:none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 PPSC Junior Clerk Preparation. All rights reserved.</p>
+            <p class="mb-0">Designed with <i class="ri-heart-fill text-danger"></i> Aryan Developer</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // WhatsApp FAB logic
+        const waFabBtn = document.getElementById('waFabBtn');
+        const waActions = document.getElementById('waActions');
+        let waOpen = false;
+
+        waFabBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            waOpen = !waOpen;
+            waActions.style.display = waOpen ? 'flex' : 'none';
+            waFabBtn.innerHTML = waOpen ? '<i class="ri-close-line"></i>' : '<i class="ri-add-line"></i>';
+        });
+
+        // Close WhatsApp actions when clicking outside
+        document.addEventListener('click', function () {
+            if (waOpen) {
+                waOpen = false;
+                waActions.style.display = 'none';
+                waFabBtn.innerHTML = '<i class="ri-add-line"></i>';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // MCQ Data (75 questions as in your array)
+        const mcqs = [
+            {
+                question: "What is the capital of Pakistan?",
+                options: ["Lahore", "Karachi", "Peshawar", "Islamabad"],
+                answer: 3,
+                explanation: "Islamabad is the capital city of Pakistan."
+            },
+            {
+                question: "Who is known as the founder of Pakistan?",
+                options: ["Allama Iqbal", "Liaquat Ali Khan", "Quaid-e-Azam", "Sir Syed Ahmad Khan"],
+                answer: 2,
+                explanation: "Quaid-e-Azam Muhammad Ali Jinnah is considered the founder of Pakistan."
+            },
+            {
+                question: "The largest province of Pakistan by area is?",
+                options: ["Balochistan", "Sindh", "Khyber Pakhtunkhwa", "Punjab"],
+                answer: 0,
+                explanation: "Balochistan is the largest province of Pakistan by area."
+            },
+            {
+                question: "MS Word is a type of?",
+                options: ["Operating System", "Word Processor", "Database", "Spreadsheet"],
+                answer: 1,
+                explanation: "MS Word is a word processing software developed by Microsoft."
+            },
+            {
+                question: "Which river is known as the lifeline of Pakistan?",
+                options: ["Jhelum", "Chenab", "Indus", "Ravi"],
+                answer: 2,
+                explanation: "The Indus River is known as the lifeline of Pakistan."
+            },
+            {
+                question: "Who was the first Governor-General of Pakistan?",
+                options: ["Liaquat Ali Khan", "Quaid-e-Azam", "Khawaja Nazimuddin", "Ayub Khan"],
+                answer: 1,
+                explanation: "Quaid-e-Azam Muhammad Ali Jinnah was the first Governor-General of Pakistan."
+            },
+            {
+                question: "CPU stands for?",
+                options: ["Computer Processing Unit", "Central Processing Unit", "Central Program Unit", "Computer Program Unit"],
+                answer: 1,
+                explanation: "CPU stands for Central Processing Unit, the brain of the computer."
+            },
+            {
+                question: "The Holy Quran was revealed in which language?",
+                options: ["Arabic", "Persian", "Urdu", "Hebrew"],
+                answer: 0,
+                explanation: "The Holy Quran was revealed in the Arabic language."
+            },
+            {
+                question: "Which gas do plants release during photosynthesis?",
+                options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+                answer: 1,
+                explanation: "Plants release Oxygen during the process of photosynthesis."
+            },
+            {
+                question: "The currency of Japan is?",
+                options: ["Yuan", "Won", "Yen", "Dollar"],
+                answer: 2,
+                explanation: "The Japanese currency is called Yen."
+            },
+            {
+                question: "What is the capital of Punjab?",
+                options: ["Lahore", "Karachi", "Islamabad", "Multan"],
+                answer: 0,
+                explanation: "Lahore is the capital of Punjab province."
+            },
+            {
+                question: "Which is the largest organ in the human body?",
+                options: ["Heart", "Skin", "Liver", "Brain"],
+                answer: 1,
+                explanation: "Skin is the largest organ of the human body."
+            },
+            {
+                question: "Pakistan came into being on?",
+                options: ["14th December 1947", "15th August 1947", "23rd March 1940", "14th August 1947"],
+                answer: 3,
+                explanation: "Pakistan became independent on 14th August 1947."
+            },
+            {
+                question: "Who was the first Prime Minister of Pakistan?",
+                options: ["Quaid-e-Azam", "Liaquat Ali Khan", "Khawaja Nazimuddin", "Ayub Khan"],
+                answer: 1,
+                explanation: "Liaquat Ali Khan was the first Prime Minister of Pakistan."
+            },
+            {
+                question: "Which continent is the largest by area?",
+                options: ["Asia", "Africa", "Europe", "North America"],
+                answer: 0,
+                explanation: "Asia is the largest continent by area."
+            },
+            {
+                question: "Who invented the telephone?",
+                options: ["Alexander Graham Bell", "Thomas Edison", "James Watt", "Albert Einstein"],
+                answer: 0,
+                explanation: "Alexander Graham Bell invented the telephone."
+            },
+            {
+                question: "Which country is called the Land of the Rising Sun?",
+                options: ["China", "Japan", "Korea", "Thailand"],
+                answer: 1,
+                explanation: "Japan is called the Land of the Rising Sun."
+            },
+            {
+                question: "What is the national flower of Pakistan?",
+                options: ["Rose", "Tulip", "Sunflower", "Jasmine"],
+                answer: 3,
+                explanation: "Jasmine is the national flower of Pakistan."
+            },
+            {
+                question: "The study of maps is called?",
+                options: ["Geology", "Cartography", "Geography", "Topography"],
+                answer: 1,
+                explanation: "Cartography is the study of maps."
+            },
+            {
+                question: "Who wrote the national anthem of Pakistan?",
+                options: ["Hafeez Jullundhri", "Allama Iqbal", "Ahmed Ghulamali Chagla", "Faiz Ahmad Faiz"],
+                answer: 0,
+                explanation: "Hafeez Jullundhri wrote the lyrics of Pakistan's national anthem."
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Earth", "Venus", "Jupiter", "Mars"],
+                answer: 3,
+                explanation: "Mars is called the Red Planet."
+            },
+            {
+                question: "What is H2O commonly known as?",
+                options: ["Salt", "Water", "Oxygen", "Hydrogen"],
+                answer: 1,
+                explanation: "H2O is the chemical formula for water."
+            },
+            {
+                question: "Which key is used to delete text from the left side of the cursor?",
+                options: ["Delete", "Enter", "Backspace", "Shift"],
+                answer: 2,
+                explanation: "Backspace deletes the text to the left of the cursor."
+            },
+            {
+                question: "Which is the smallest planet in our solar system?",
+                options: ["Mars", "Mercury", "Venus", "Pluto"],
+                answer: 1,
+                explanation: "Mercury is the smallest planet in our solar system."
+            },
+            {
+                question: "Which country has the largest population in the world?",
+                options: ["India", "USA", "China", "Russia"],
+                answer: 2,
+                explanation: "China has the largest population in the world."
+            },
+            {
+                question: "Which device is used to print documents?",
+                options: ["Monitor", "Scanner", "Printer", "Projector"],
+                answer: 2,
+                explanation: "A printer is used to print documents on paper."
+            },
+            {
+                question: "Which is the largest ocean in the world?",
+                options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+                answer: 3,
+                explanation: "The Pacific Ocean is the largest ocean in the world."
+            },
+            {
+                question: "Who was the first President of Pakistan?",
+                options: ["Iskander Mirza", "Ayub Khan", "Liaquat Ali Khan", "Zulfiqar Ali Bhutto"],
+                answer: 0,
+                explanation: "Iskander Mirza was the first President of Pakistan."
+            },
+            {
+                question: "Which part of the computer is called the brain?",
+                options: ["Monitor", "CPU", "Mouse", "Keyboard"],
+                answer: 1,
+                explanation: "The CPU is considered the brain of the computer."
+            },
+            {
+                question: "Who is known as the national poet of Pakistan?",
+                options: ["Faiz Ahmad Faiz", "Ahmed Faraz", "Josh Malihabadi", "Allama Iqbal"],
+                answer: 3,
+                explanation: "Allama Iqbal is regarded as the national poet of Pakistan."
+            },
+            {
+                question: "Which instrument is used to measure temperature?",
+                options: ["Barometer", "Thermometer", "Hygrometer", "Speedometer"],
+                answer: 1,
+                explanation: "A thermometer is used to measure temperature."
+            },
+            {
+                question: "What is the national language of Pakistan?",
+                options: ["Punjabi", "Sindhi", "Urdu", "Pashto"],
+                answer: 2,
+                explanation: "Urdu is the national language of Pakistan."
+            },
+            {
+                question: "Which is the largest desert in the world?",
+                options: ["Sahara", "Thar", "Kalahari", "Gobi"],
+                answer: 0,
+                explanation: "The Sahara Desert is the largest desert in the world."
+            },
+            {
+                question: "What is the chemical symbol of gold?",
+                options: ["Ag", "Au", "Gd", "Go"],
+                answer: 1,
+                explanation: "The chemical symbol for gold is Au."
+            },
+            {
+                question: "Which vitamin is produced in the body by sunlight?",
+                options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin B12"],
+                answer: 2,
+                explanation: "Vitamin D is produced when the skin is exposed to sunlight."
+            },
+            {
+                question: "What is the national sport of Pakistan?",
+                options: ["Cricket", "Hockey", "Football", "Kabaddi"],
+                answer: 1,
+                explanation: "Hockey is the national sport of Pakistan."
+            },
+            {
+                question: "Who invented the light bulb?",
+                options: ["Alexander Fleming", "Thomas Edison", "Isaac Newton", "Benjamin Franklin"],
+                answer: 1,
+                explanation: "Thomas Edison is credited with inventing the light bulb."
+            },
+            {
+                question: "Which gas is essential for breathing?",
+                options: ["Carbon dioxide", "Oxygen", "Hydrogen", "Nitrogen"],
+                answer: 1,
+                explanation: "Oxygen is essential for breathing."
+            },
+            {
+                question: "Which city is called the City of Lights in Pakistan?",
+                options: ["Islamabad", "Lahore", "Karachi", "Multan"],
+                answer: 2,
+                explanation: "Karachi is famously called the City of Lights."
+            },
+            {
+                question: "Which is the largest Muslim country by population?",
+                options: ["Pakistan", "Bangladesh", "Saudi Arabia", "Indonesia"],
+                answer: 3,
+                explanation: "Indonesia is the largest Muslim country by population."
+            },
+            {
+                question: "Who was the first female Prime Minister of Pakistan?",
+                options: ["Fatima Jinnah", "Benazir Bhutto", "Hina Rabbani Khar", "Begum Raana Liaquat Ali Khan"],
+                answer: 1,
+                explanation: "Benazir Bhutto was the first female Prime Minister of Pakistan."
+            },
+            {
+                question: "Which device is used for sending electronic mail?",
+                options: ["Printer", "Scanner", "Computer", "Telephone"],
+                answer: 2,
+                explanation: "A computer with internet access is used for sending emails."
+            },
+            {
+                question: "Which is the smallest continent?",
+                options: ["Europe", "Australia", "South America", "Africa"],
+                answer: 1,
+                explanation: "Australia is the smallest continent by area."
+            },
+            {
+                question: "Who discovered gravity?",
+                options: ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "James Watt"],
+                answer: 1,
+                explanation: "Sir Isaac Newton discovered the law of gravity."
+            },
+            {
+                question: "Which is the hottest planet in the solar system?",
+                options: ["Venus", "Mercury", "Mars", "Jupiter"],
+                answer: 0,
+                explanation: "Venus is the hottest planet due to its thick atmosphere."
+            },
+            {
+                question: "Who invented the computer mouse?",
+                options: ["Charles Babbage", "Douglas Engelbart", "Alan Turing", "Bill Gates"],
+                answer: 1,
+                explanation: "Douglas Engelbart invented the computer mouse."
+            },
+            {
+                question: "Which is the fastest land animal?",
+                options: ["Tiger", "Horse", "Cheetah", "Lion"],
+                answer: 2,
+                explanation: "The cheetah is the fastest land animal."
+            },
+            {
+                question: "Which city is called the Heart of Pakistan?",
+                options: ["Islamabad", "Lahore", "Karachi", "Multan"],
+                answer: 1,
+                explanation: "Lahore is known as the Heart of Pakistan."
+            },
+            {
+                question: "The UN was founded in which year?",
+                options: ["1919", "1939", "1945", "1950"],
+                answer: 2,
+                explanation: "The United Nations was founded in 1945 after World War II."
+            },
+            {
+                question: "What is the national bird of Pakistan?",
+                options: ["Chukar Partridge", "Peacock", "Eagle", "Pigeon"],
+                answer: 0,
+                explanation: "The Chukar Partridge is the national bird of Pakistan."
+            },
+            {
+                question: "Which element is needed for breathing?",
+                options: ["Hydrogen", "Oxygen", "Carbon dioxide", "Nitrogen"],
+                answer: 1,
+                explanation: "Oxygen is essential for human breathing."
+            },
+            {
+                question: "What is the capital of Gilgit-Baltistan?",
+                options: ["Skardu", "Gilgit", "Hunza", "Chilas"],
+                answer: 1,
+                explanation: "Gilgit is the capital of Gilgit-Baltistan."
+            },
+            {
+                question: "Which is the longest river in the world?",
+                options: ["Amazon", "Nile", "Yangtze", "Indus"],
+                answer: 1,
+                explanation: "The Nile is generally considered the longest river in the world."
+            },
+            {
+                question: "Which device is used to capture images?",
+                options: ["Printer", "Scanner", "Camera", "Projector"],
+                answer: 2,
+                explanation: "A camera is used to capture images."
+            },
+            {
+                question: "Which is the national tree of Pakistan?",
+                options: ["Neem", "Deodar", "Pine", "Banyan"],
+                answer: 1,
+                explanation: "Deodar (Cedrus deodara) is the national tree of Pakistan."
+            },
+            {
+                question: "Which organ pumps blood in the human body?",
+                options: ["Liver", "Lungs", "Heart", "Kidneys"],
+                answer: 2,
+                explanation: "The heart pumps blood throughout the human body."
+            },
+            {
+                question: "Who was the first Muslim Nobel Prize winner?",
+                options: ["Dr. Abdul Qadeer Khan", "Ahmed Zewail", "Malala Yousafzai", "Dr. Abdus Salam"],
+                answer: 3,
+                explanation: "Dr. Abdus Salam won the Nobel Prize in Physics in 1979."
+            },
+            {
+                question: "Which is the largest gland in the human body?",
+                options: ["Pancreas", "Liver", "Thyroid", "Kidney"],
+                answer: 1,
+                explanation: "The liver is the largest gland in the human body."
+            },
+            {
+                question: "Which is the national airline of Pakistan?",
+                options: ["Emirates", "Air Blue", "PIA", "Shaheen Air"],
+                answer: 2,
+                explanation: "PIA (Pakistan International Airlines) is the national airline."
+            },
+            {
+                question: "What is the study of earthquakes called?",
+                options: ["Seismology", "Geology", "Ecology", "Meteorology"],
+                answer: 0,
+                explanation: "Seismology is the scientific study of earthquakes."
+            },
+            {
+                question: "Which is the capital of Azad Jammu and Kashmir?",
+                options: ["Skardu", "Muzaffarabad", "Mirpur", "Kotli"],
+                answer: 1,
+                explanation: "Muzaffarabad is the capital of Azad Jammu and Kashmir."
+            },
+            {
+                question: "Which part of the plant conducts photosynthesis?",
+                options: ["Root", "Stem", "Leaf", "Flower"],
+                answer: 2,
+                explanation: "Leaves are the main site of photosynthesis in plants."
+            },
+            {
+                question: "Which is the hardest natural substance?",
+                options: ["Iron", "Diamond", "Steel", "Graphite"],
+                answer: 1,
+                explanation: "Diamond is the hardest natural substance."
+            },
+            {
+                question: "Which is the national mosque of Pakistan?",
+                options: ["Data Darbar Mosque", "Badshahi Mosque", "Faisal Mosque", "Shah Jahan Mosque"],
+                answer: 2,
+                explanation: "Faisal Mosque in Islamabad is the national mosque of Pakistan."
+            },
+            {
+                question: "Who was the first Caliph of Islam?",
+                options: ["Hazrat Abu Bakr (RA)", "Hazrat Umar (RA)", "Hazrat Ali (RA)", "Hazrat Usman (RA)"],
+                answer: 0,
+                explanation: "Hazrat Abu Bakr Siddique (RA) was the first Caliph of Islam."
+            },
+            {
+                question: "What is the chemical symbol for silver?",
+                options: ["Si", "S", "Au", "Ag"],
+                answer: 3,
+                explanation: "The chemical symbol for silver is Ag."
+            },
+            {
+                question: "Which is the largest mammal?",
+                options: ["Elephant", "Blue Whale", "Giraffe", "Shark"],
+                answer: 1,
+                explanation: "The Blue Whale is the largest mammal on Earth."
+            },
+            {
+                question: "Which Pakistani cricketer is known as the Sultan of Swing?",
+                options: ["Wasim Akram", "Waqar Younis", "Imran Khan", "Shoaib Akhtar"],
+                answer: 0,
+                explanation: "Wasim Akram is famously known as the Sultan of Swing."
+            },
+            {
+                question: "Which is the tallest building in the world?",
+                options: ["Shanghai Tower", "Burj Khalifa", "Petronas Towers", "One World Trade Center"],
+                answer: 1,
+                explanation: "Burj Khalifa in Dubai is the tallest building in the world."
+            },
+            {
+                question: "Which country is famous for the Great Wall?",
+                options: ["India", "Japan", "China", "Korea"],
+                answer: 2,
+                explanation: "The Great Wall is located in China."
+            },
+            {
+                question: "What is the boiling point of water?",
+                options: ["50°C", "100°C", "150°C", "200°C"],
+                answer: 1,
+                explanation: "Water boils at 100°C at standard atmospheric pressure."
+            },
+            {
+                question: "Which city is called the City of Saints in Pakistan?",
+                options: ["Karachi", "Lahore", "Sialkot", "Multan"],
+                answer: 3,
+                explanation: "Multan is called the City of Saints."
+            },
+            {
+                question: "Which is the national monument of Pakistan?",
+                options: ["Minar-e-Pakistan", "Quaid's Mausoleum", "Pakistan Monument", "Badshahi Mosque"],
+                answer: 0,
+                explanation: "Minar-e-Pakistan in Lahore is the national monument."
+            },
+            {
+                question: "Which Pakistani won the Nobel Peace Prize in 2014?",
+                options: ["Imran Khan", "Dr. Abdul Qadeer Khan", "Malala Yousafzai", "Benazir Bhutto"],
+                answer: 2,
+                explanation: "Malala Yousafzai won the Nobel Peace Prize in 2014."
+            },
+            {
+                question: "Which country is known as the Land of a Thousand Lakes?",
+                options: ["Norway", "Canada", "Finland", "Sweden"],
+                answer: 2,
+                explanation: "Finland is called the Land of a Thousand Lakes."
+            }
+        ];
+        // Quiz variables
+        let currentQuestion = 0;
+        let score = 0;
+        const quizContainer = document.getElementById('quiz-container');
+        const resultContainer = document.getElementById('result-container');
+        const progressBar = document.getElementById('progressBar');
+        const currentQuestionEl = document.getElementById('currentQuestion');
+        const totalQuestionsEl = document.getElementById('totalQuestions');
+        const currentScoreEl = document.getElementById('currentScore');
+
+        // Initialize quiz
+        totalQuestionsEl.textContent = mcqs.length;
+
+        function showQuestion() {
+            const mcq = mcqs[currentQuestion];
+            currentQuestionEl.textContent = currentQuestion + 1;
+            currentScoreEl.textContent = score;
+
+            // Update progress bar
+            const progress = ((currentQuestion) / mcqs.length) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            quizContainer.innerHTML = `
+                <div class="question-card">
+                    <h4 class="mb-4">${mcq.question}</h4>
+                    <div class="options-container">
+                        ${mcq.options.map((option, index) => `
+                            <button class="btn option-btn" onclick="selectOption(${index})" data-option="${index}">
+                                ${String.fromCharCode(65 + index)}. ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="explanation mt-3" id="explanation"></div>
+                </div>
+            `;
+        }
+
+        // Global function for option selection
+        window.selectOption = function (selectedIndex) {
+            const mcq = mcqs[currentQuestion];
+            const optionButtons = document.querySelectorAll('.option-btn');
+            const explanationEl = document.getElementById('explanation');
+
+            // Disable all buttons
+            optionButtons.forEach(btn => btn.disabled = true);
+
+            // Show correct/wrong answers
+            optionButtons.forEach((btn, index) => {
+                if (index === mcq.answer) {
+                    btn.classList.add('correct');
+                } else if (index === selectedIndex && index !== mcq.answer) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            // Update score and show explanation
+            if (selectedIndex === mcq.answer) {
+                score++;
+                currentScoreEl.textContent = score;
+                explanationEl.innerHTML = `<strong><i class="ri-lightbulb-flash-line"></i> Explanation:</strong> ${mcq.explanation}`;
+                explanationEl.style.display = 'block';
+            }
+
+            // Move to next question after delay
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < mcqs.length) {
+                    showQuestion();
+                } else {
+                    showResults();
+                }
+            }, 2000);
+        }
+
+        function showResults() {
+            const percentage = ((score / mcqs.length) * 100).toFixed(1);
+            let message = '';
+            let resultClass = '';
+
+            if (percentage >= 80) {
+                message = 'Excellent! You are well prepared for the exam.';
+                resultClass = 'text-success';
+            } else if (percentage >= 60) {
+                message = 'Good job! Keep practicing to improve further.';
+                resultClass = 'text-warning';
+            } else {
+                message = 'Keep practicing! Review the explanations and try again.';
+                resultClass = 'text-danger';
+            }
+
+            quizContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            resultContainer.innerHTML = `
+                <div class="result-card">
+                    <h3 class="${resultClass}">Quiz Completed!</h3>
+                    <div class="score-display ${resultClass}">${score}/${mcqs.length}</div>
+                    <h4 class="mb-3">${percentage}% Correct</h4>
+                    <p class="lead">${message}</p>
+                    <button class="btn btn-light btn-lg mt-3" onclick="restartQuiz()">
+                        <i class="ri-restart-line"></i> Try Again
+                    </button>
+                </div>
+            `;
+
+            // Complete progress bar
+            progressBar.style.width = '100%';
+        }
+
+        // Global function to restart quiz
+        window.restartQuiz = function () {
+            currentQuestion = 0;
+            score = 0;
+            resultContainer.style.display = 'none';
+            quizContainer.style.display = 'block';
+            showQuestion();
+        }
+
+        // Start the quiz
+        showQuestion();
+    </script>
+</body>
+
+</html>
