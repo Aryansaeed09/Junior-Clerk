@@ -1053,9 +1053,9 @@
             quizContainer.style.display = 'none';
             resultContainer.style.display = 'block';
             resultContainer.innerHTML = `
-                <div class="result-card">
-                    <h3 class="${resultClass}">Quiz Completed!</h3>
-                    <div class="score-display ${resultClass}">${score}/${mcqs.length}</div>
+                <div class="result-card text-white">
+                    <h3 class="${resultClass} text-white ">Quiz Completed!</h3>
+                    <div class="text-white score-display ${resultClass}">${score}/${mcqs.length}</div>
                     <h4 class="mb-3">${percentage}% Correct</h4>
                     <p class="lead">${message}</p>
                     <button class="btn btn-light btn-lg mt-3" onclick="restartQuiz()">
